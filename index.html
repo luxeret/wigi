@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위기알리오</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #loading p {
+            font-size: 24px;
+            color: #636464;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <p>위기알리오</p>
+    </div>
+    <div id="search-container">
+        <input type="text" id="search-bar" placeholder="검색하여 조회해보세요!" oninput="filterMarkers()">
+        <select id="filter-select" onchange="filterMarkers()">
+            <option value="all">전체</option>
+            <option value="crime">범죄</option>
+            <option value="disaster">재해</option>
+            <option value="protest">집회</option>
+        </select>
+    </div>
+    <div id="legend">
+        <h4>등록정보</h4>
+        <div><span class="marker-icon-red"></span> 범죄 <span id="crime-count">(0건)</span></div>
+        <div><span class="marker-icon-blue"></span> 재해 <span id="disaster-count">(0건)</span></div>
+        <div><span class="marker-icon-green"></span> 집회 <span id="protest-count">(0건)</span></div>
+        <div id="current-time">
+            <p>KST: <span id="kst-time">로딩중...</span></p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <div id="search-results"></div> 
+    <a id="report-button" href="report.html">제보하기</a>
+
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+        window.addEventListener('load', () => {
+            document.getElementById('loading').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
